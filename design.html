@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<!--/*@thymesVar id="designTemplateForm" type="com.sistic.stixcloud.emailtemplate.administration.designer.bean.DesignTemplateForm"*/-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.10.7/css/grapes.min.css"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.10.7/grapes.min.js"></script>
+    <script src="./grapesjs-blocks-basic.min.js"></script>
+    <script src="./dist/grapesjs-plugin-placeholder.min.js"></script>
+    <script src="./dist/grapesjs-plugin-snippets.min.js"></script>
+    <script src="./dist/grapesjs-plugin-customrte.min.js"></script>
+
+    <script src="./dist/grapesjs-navbar.min.js"></script>
+    <!--<script type="text/javascript" th:src="@{/resources/grapesjs/grapesjs-blocks-basic.min.js}"></script>-->
+    <!--<script type="text/javascript" th:src="@{/resources/grapesjs/grapesjs-preset-newsletter.min.js}"></script>-->
+</head>
+<body>
+<div id="gjs" style="height:0; overflow:hidden"></div>
+<script type="text/javascript">
+
+  var templateTokens =  {"GST Rate":"gst_rate","Delivery Method Code":"DeliveryMethodCode","Payment Method":"payment_method"};
+  var editor = grapesjs.init({
+      container : '#gjs',
+      components: '<div class="txt-red">Hello world!</div>',
+      style: '.txt-red{color: red}',
+      plugins: ['gjs-blocks-basic', 'gjs-plugin-snippets', 'gjs-plugin-customrte', 'gjs-navbar'],
+      pluginsOpts: {
+        'gjs-blocks-basic': {/* ...options */},
+        //'gjs-plugin-placeholder': {/* ...options */},
+        'gjs-plugin-snippets': {param : [{'name': "test2", 'html': `<div data-type="test2">Test</div>`}, {'name': "test3", 'html': `<div data-type="test3">Test3</div>`}]},
+        'gjs-plugin-customrte': { param: templateTokens},
+        'gjs-navbar': {}
+      }
+  });
+    
+    var listItem = '<table class="list-item"><tr><td class="list-item-cell"><table class="list-item-content"><tr class="list-item-row"><td class="list-cell-left"><img class="list-item-image" src="http://placehold.it/150x150/78c5d6/fff/" alt="Image"/></td><td class="list-cell-right"><h1 class="card-title">Title here</h1><p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p></td></tr></table></td></tr></table>';
+        
+    editor.BlockManager.add('list-items', {
+        label: 'List items',
+        content: listItem + listItem,
+        attributes: {"class":'fa fa-th-list'}
+    });
+    
+    var domComponents = editor.DomComponents;
+    window.domComponents;
+    console.log(domComponents)
+</script>
+
+</body>
+</html>
